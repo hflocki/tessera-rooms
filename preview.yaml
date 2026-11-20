@@ -1,0 +1,45 @@
+# What tools/preview.py and the picture on the Plugins page show (docs/PREVIEW.md): made-up rooms with lights and
+# plugs. The first examples come first on the picture.
+tiles:
+  - tile: room
+    name: Living room
+    options: { icon: sofa, e1: light.living_ceiling, e2: light.living_floor_lamp, e3: switch.living_tv_plug,
+               e4: fan.living_fan }
+    sizes: [2x3, 2x5, 5x2]
+  - tile: room
+    name: Kitchen
+    options: { e1: light.kitchen_counter, e2: switch.kitchen_coffee }
+    sizes: [1x2, 2x2]
+  - tile: room
+    name: Office
+    options: { area: office, skip: [child_lock, indicator] }
+    sizes: [2x3, 3x2, full]
+  - tile: room
+    name: Bedroom
+    options: { e1: light.bedroom_bedside }
+    sizes: [1x1]
+  - tile: room
+    name: Hall
+    sizes: [2x2]
+
+states:
+  light.living_ceiling: { state: "on", attributes: { friendly_name: Ceiling } }
+  light.living_floor_lamp: { state: "off", attributes: { friendly_name: Floor lamp } }
+  switch.living_tv_plug: { state: "on", attributes: { friendly_name: TV plug } }
+  fan.living_fan: { state: "unavailable", attributes: { friendly_name: Fan } }
+  light.kitchen_counter: { state: "off", attributes: { friendly_name: Counter } }
+  switch.kitchen_coffee: { state: "on", attributes: { friendly_name: Coffee } }
+  light.bedroom_bedside: { state: "off", attributes: { friendly_name: Bedside } }
+
+commands:
+  "search/related":
+    area: [office]
+    device: [a1b2c3, d4e5f6]
+    entity: [light.office_desk_lamp, light.office_ceiling, switch.office_printer, switch.office_printer_child_lock,
+             switch.office_monitor, sensor.office_temperature, input_boolean.office_focus]
+  "history/history_during_period":
+    light.office_desk_lamp: [{ s: "on", a: { friendly_name: Desk lamp }, lu: 1791386619.0 }]
+    light.office_ceiling: [{ s: "off", a: { friendly_name: Ceiling }, lu: 1791386619.0 }]
+    switch.office_printer: [{ s: "off", a: { friendly_name: Printer }, lu: 1791386619.0 }]
+    switch.office_monitor: [{ s: "on", a: { friendly_name: Monitor }, lu: 1791386619.0 }]
+    input_boolean.office_focus: [{ s: "off", a: { friendly_name: Focus }, lu: 1791386619.0 }]

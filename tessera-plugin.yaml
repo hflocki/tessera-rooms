@@ -1,0 +1,77 @@
+# A room on a tile: its name with an icon or a picture at the top, and the switches, plugs and lights of the room under
+# it. The entities are chosen on the tile, or found in a Home Assistant area. Every field is explained in
+# docs/MANIFEST.md of tessera-plugins.
+id: rooms
+version: 1.0.0
+# 0.15: options of kind entity; 0.17: the address entity: and camera: of the tile's own entity for its picture.
+api: "0.17"
+icon: sofa
+maintainer: hflocki
+license: MIT
+stage: beta
+topics: [home]
+requires:
+  esphome: 2026.6.2
+boards: any
+flash_kb: 16
+
+permissions:
+  # A tap on a row switches its entity.
+  home_assistant_actions: [homeassistant.toggle]
+  # An area's entities (search/related), and their states and names (history/history_during_period), asked only for
+  # a tile that names an area.
+  ha_commands: ["search/related", "history/history_during_period"]
+
+tiles:
+  - id: room
+    name: tile_name
+    icon: sofa
+    sizes: { min: 1x1, max: 5x5 }
+    # Twelve rows of a block, an icon, a name, a switch with its knob and a word, the head, and the rows' entities.
+    memory: 9000
+    example: tile_example
+    # The tile's own entity is only its picture: an image, a camera or a person. The switches are the options below.
+    domains: [image, camera, person]
+    attributes: [entity_picture]
+    pictures: 1
+    options:
+      - { id: title, kind: text, label: title, hint: title_hint }
+      - id: icon
+        kind: choice
+        default: auto
+        label: icon
+        hint: icon_hint
+        choices:
+          - { value: auto, label: icon_auto }
+          - { value: home, label: icon_home }
+          - { value: sofa, label: icon_sofa }
+          - { value: bed, label: icon_bed }
+          - { value: chef-hat, label: icon_kitchen }
+          - { value: silverware-fork-knife, label: icon_dining }
+          - { value: bathtub, label: icon_bathtub }
+          - { value: shower, label: icon_shower }
+          - { value: toilet, label: icon_toilet }
+          - { value: desk, label: icon_desk }
+          - { value: account-child, label: icon_child }
+          - { value: washing-machine, label: icon_laundry }
+          - { value: television, label: icon_tv }
+          - { value: fireplace, label: icon_fireplace }
+          - { value: garage, label: icon_garage }
+          - { value: car, label: icon_car }
+          - { value: tree, label: icon_garden }
+          - { value: flower, label: icon_balcony }
+          - { value: grill, label: icon_grill }
+          - { value: pool, label: icon_pool }
+          - { value: lightbulb-group, label: icon_lights }
+          - { value: power-plug, label: icon_plugs }
+          - { value: dog, label: icon_pet }
+      - { id: area, kind: text, label: area, hint: area_hint }
+      - { id: skip, kind: text, multiple: 8, default: [child_lock, indicator], label: skip, hint: skip_hint }
+      - { id: e1, kind: entity, domains: [switch, light, fan, input_boolean], label: e1, hint: entity_hint }
+      - { id: e2, kind: entity, domains: [switch, light, fan, input_boolean], label: e2 }
+      - { id: e3, kind: entity, domains: [switch, light, fan, input_boolean], label: e3 }
+      - { id: e4, kind: entity, domains: [switch, light, fan, input_boolean], label: e4 }
+      - { id: e5, kind: entity, domains: [switch, light, fan, input_boolean], label: e5 }
+      - { id: e6, kind: entity, domains: [switch, light, fan, input_boolean], label: e6 }
+      - { id: e7, kind: entity, domains: [switch, light, fan, input_boolean], label: e7 }
+      - { id: e8, kind: entity, domains: [switch, light, fan, input_boolean], label: e8 }

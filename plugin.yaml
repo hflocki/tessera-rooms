@@ -1,0 +1,4 @@
+# What a screen gets when it takes this plugin: the component, configured. Tessera includes this file from the screen's
+# <name>.plugins.yaml and adds this plugin's components/ folder as an ESPHome external component. Each tile's switches
+# and area are chosen in its inspector and reach the tile without a build.
+rooms:
