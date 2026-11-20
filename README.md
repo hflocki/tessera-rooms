@@ -1,3 +1,5 @@
+> in testing not ready
+
 # Rooms
 
 A room on a tile: its name at the top with an icon or a picture, and under it the lights, plugs, switches and fans of
